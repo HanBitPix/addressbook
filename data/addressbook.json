@@ -1,0 +1,56 @@
+[
+  {
+    "id": "Jacob Smith",
+    "first_name": "Jacob",
+    "last_name": "Smith",
+    "address": {
+      "street": "10 Market Street",
+      "city"  : "San Francisco",
+      "state": "California",
+      "zipcode": "94111"
+    },
+    "phone_number": "4083384238",
+    "email": "Orland12@gmail.com",
+    "birthday": {
+      "year": 1991,
+      "month": 5,
+      "day": 17
+    }
+  },
+  {
+    "id": "Gennaro Dickens",
+    "first_name": "Gennaro",
+    "last_name": "Dickens",
+    "address": {
+      "street": "10 Waker Lane",
+      "city"  : "Sparta",
+      "state": "NJ",
+      "zipcode": "12030"
+    },
+    "phone_number": "0642090850",
+    "email": "Rylee_Cartwright@gmail.com",
+    "birthday": {
+      "year": 1958,
+      "month": 12,
+      "day": 12
+    }
+  },
+  {
+    "id": "Robert Labadie",
+    "first_name": "Robert",
+    "last_name": "Labadie",
+    "address": {
+      "street": "14 Quarterhose Xing",
+      "city"  : "Centreville",
+      "state": "Virginia",
+      "zipcode": "09593"
+    },
+    "phone_number": "4083384238",
+    "email": "Freddy.Beer@yahoo.com",
+    "birthday": {
+      "year": 1991,
+      "month": 9,
+      "day": 1
+    }
+  }
+]
