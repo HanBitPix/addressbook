@@ -12,24 +12,25 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 
 // Sample Data Parse
-function indexData(){
-  const addressbookRaw = fs.readFileSync('../data/addressbook.json');
+function indexData(req,res){
+  const addressbookRaw = fs.readFileSync('./data/addressbook.json');
   const addressbook = JSON.parse(addressbookRaw);
   console.log(`${addressbook.length} items parsed from data file`);
   elastic.bulkIndex('addressbook', 'contact', addressbook);
+  res.send(addressbook);
 }
 
 /****************  
   *** Get Sample Data ***
 ************** */
 app.get('/', (req, res) => {
-  res.send(indexData());
+  indexData(req, res);
 });
 
 /****************  
   *** Creates a User ***
 ************** */
-app.post('/contact/:name', (req, res) => {
+app.post('/contact/', (req, res) => {
   elastic.createUser(req,res);
 });
 
@@ -74,3 +75,4 @@ app.listen(PORT, function() {
   console.log('Server is running on PORT:',PORT);
 });
 
+module.exports = app;

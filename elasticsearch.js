@@ -22,9 +22,24 @@ module.exports = {
     client.create({
       index: 'addressbook',
       type: 'contact',
-      id: req.params.name,
+      id: req.body.id,
       body: {
-        name: req.params.name
+        id: req.body.id,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        address: {
+          street: req.body.address.street,
+          city  : req.body.address.city,
+          state: req.body.address.state,
+          zipcode: req.body.address.zip
+        },
+        phone_number: req.body.phone_number,
+        email: req.body.email,
+        birthday: {
+          year: req.body.birthday.year,
+          month: req.body.birthday.month,
+          day: req.body.birthday.day
+        }
       }
     }).then((resp) => {
       console.log(resp);
@@ -97,7 +112,7 @@ module.exports = {
       res.send(resp);
     }).catch((err) => {
       console.trace(err.message);
-      res.send(err.message);
+      res.status(404).send('User was not found to delete!');
     });
   },
   // Deletes all indices
