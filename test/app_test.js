@@ -81,39 +81,57 @@ describe('GET /contact/:user', () => {
         done();
       });
   });
-});
 
+  it('User Not Found Error', (done) => {
+    chai.request(app)
+      .get('/contact/' + 'Ash Mustard')
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+});
 
 describe('PUT /contact/:user', () => {
   it('Updates a Specific User Successfully', (done) => {
     chai.request(app)
-      .get('/contact/' + 'John Doe')
+      .put('/contact/' + 'John Doe?name=Smithy Smith')
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         done();
       });
   });
+
+  it('Error when user is not found to be updated', (done) => {
+    chai.request(app)
+      .put('/contact/' + 'Marco Polo')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
 });
 
-// describe('Delete /contact/:user', () => {
-//   it('Deletes A Specific User Successfully', (done) => {
-//     chai.request(app)
-//       .delete('/contact/' + 'John Doe')
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         res.body.should.be.a('object');
-//         res.body.should.have.property('result').eql('deleted');
-//         done();
-//       });
-//   });
+describe('Delete /contact/:user', () => {
+  it('Deletes A Specific User Successfully', (done) => {
+    chai.request(app)
+      .delete('/contact/' + 'John Doe')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('result').eql('deleted');
+        done();
+      });
+  });
 
-//   it('Error When Deleting Non-existing User', (done) => {
-//     chai.request(app)
-//       .delete('/contact/' + 'Shark Tank')
-//       .end((err, res) => {
-//         res.should.have.status(404);
-//         done();
-//       });
-//   });
-// });
+  it('Error When Deleting Non-existing User', (done) => {
+    chai.request(app)
+      .delete('/contact/' + 'Shark Tank')
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+});

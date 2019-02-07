@@ -61,7 +61,7 @@ module.exports = {
       res.send(resp);
     }).catch((err) => {
       console.trace(err.message);
-      res.send('No User Found!');
+      res.status(404).send('No User Found!');
     });
   },
 
@@ -90,7 +90,7 @@ module.exports = {
       id: req.params.name,
       body: {
         doc: {
-          name: req.query.name
+          first_name: req.query.name
         }
       }
     }).then((resp) => {
@@ -98,7 +98,7 @@ module.exports = {
       res.send(resp);
     }).catch((err) => {
       console.trace(err.message);
-      res.send(err.message);
+      res.status(404).send('User was not found to update!');
     });
   },
   // Deletes a User
